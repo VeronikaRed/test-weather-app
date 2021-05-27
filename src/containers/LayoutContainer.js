@@ -6,6 +6,10 @@ export const LayoutContainer = ({ children }) => {
     const [search, setSearch] = useState('');
     const [isSearching, setIsSearching] = useState(false);
     const [data, setData] = useState();
+    const [hasError, setHasError] = useState({
+        flag: false,
+        errorMessage: ''
+    });
     const handleChangeSearch = e => setSearch(e.target.value);
 
     const handleSearchWeather = async () => {
@@ -17,13 +21,21 @@ export const LayoutContainer = ({ children }) => {
 
                 const response = await fetch(url);
                 const results = await response.json();
-
-                setSearch('');
-                setData(results);
-                window.localStorage.setItem('location', results.id);
-                setIsSearching(false);
+                console.log(results);
+                if (results.cod === 200) {
+                    setSearch('');
+                    setData(results);
+                    window.localStorage.setItem('location', results.id);
+                    setIsSearching(false);
+                } else {
+                    throw new Error(
+                        `Status code: ${results.cod}. Reason: ${results.message}. Please reload the page and try again. `
+                    );
+                }
             } catch (e) {
-                console.log(e);
+                setHasError({ flag: true, errorMessage: e.message });
+
+                console.log(hasError);
             }
         }
     };
@@ -61,6 +73,7 @@ export const LayoutContainer = ({ children }) => {
         data,
         onChangeSearch: handleChangeSearch,
         onSearchWeather: handleSearchWeather,
-        onKeyDown: handleKeyDown
+        onKeyDown: handleKeyDown,
+        hasError
     });
 };
