@@ -71,8 +71,6 @@ export const LayoutContainer = ({ children }) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    if (!data) return null;
-
     return children({
         search,
         isSearching,

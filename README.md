@@ -9,7 +9,7 @@
 # Дополнительная информация
 
 1.Создайте папку `test-app`;<br />
-2.В консоле введите команды `git clone https://https://github.com/VeronikaRed/test-weather-app`,<br />
-`cd test-app/`<br />
+2.В консоле введите команды `git clone https://github.com/VeronikaRed/test-weather-app`,<br />
+`cd test-weather-app/`<br />
 3.Выполните команду `yarn` или `npm i` в терминале и дождитесь пока все необходимые пакеты будут установлены.<br />
 4.Ввыполните команду `yarn start` или `npm start`, чтобы запустить локальный сервер.<br />
