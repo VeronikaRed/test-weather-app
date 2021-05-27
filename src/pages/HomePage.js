@@ -8,10 +8,9 @@ import {
 export const HomePage = ({ data }) => {
     const { main, name, weather } = data;
     let srcPicture = `http://openweathermap.org/img/w/${weather[0].icon}.png`;
-    console.log(data);
     return (
         <StyledWrapper>
-            <h1>weather in {name}</h1>
+            <h1>Weather in {name}</h1>
             <StyledSection>
                 <StyledItem>
                     <div>

@@ -21,7 +21,6 @@ export const LayoutContainer = ({ children }) => {
 
                 const response = await fetch(url);
                 const results = await response.json();
-                console.log(results);
                 if (results.cod === 200) {
                     setSearch('');
                     setData(results);
@@ -34,10 +33,17 @@ export const LayoutContainer = ({ children }) => {
                 }
             } catch (e) {
                 setHasError({ flag: true, errorMessage: e.message });
-
-                console.log(hasError);
             }
         }
+    };
+
+    const handleReloadPage = () => {
+        setHasError({
+            flag: false,
+            errorMessage: ''
+        });
+        setSearch('');
+        setIsSearching(false);
     };
 
     const handleKeyDown = e => {
@@ -71,9 +77,10 @@ export const LayoutContainer = ({ children }) => {
         search,
         isSearching,
         data,
+        hasError,
         onChangeSearch: handleChangeSearch,
         onSearchWeather: handleSearchWeather,
         onKeyDown: handleKeyDown,
-        hasError
+        onReloadPage: handleReloadPage
     });
 };

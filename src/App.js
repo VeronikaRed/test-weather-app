@@ -10,10 +10,14 @@ export const App = () => {
         <ThemeProvider theme={theme}>
             <GlobalStyles />
             <LayoutContainer>
-                {({ data, hasError, ...other }) => {
-                    console.log(hasError);
+                {({ data, hasError, onReloadPage, ...other }) => {
                     if (hasError.flag) {
-                        return <ErrorPage hasError={hasError}></ErrorPage>;
+                        return (
+                            <ErrorPage
+                                hasError={hasError}
+                                onReloadPage={onReloadPage}
+                            ></ErrorPage>
+                        );
                     } else {
                         return (
                             <Layout {...other}>
